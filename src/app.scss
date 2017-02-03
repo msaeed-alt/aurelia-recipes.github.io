@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Raleway');
+
+html {
+    background: #0fb4e7; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #0fb4e7 0%, #78d3ed 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #0fb4e7 0%,#78d3ed 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #0fb4e7 0%,#78d3ed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0fb4e7', endColorstr='#78d3ed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+    height: 100%; //Make sure that background fills up entire space;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+body {
+    color: white;
+    font-size: 4em;
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-family: 'Poiret One', cursive;
+}
+
+mark {
+    background-color: rgba(209, 98, 255, 0.56);
+    color:white;
+}
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+// Display/Header fonts: https://fonts.google.com/specimen/Poiret+One
