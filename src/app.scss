@@ -14,11 +14,10 @@ html {
 }
 body {
     color: white;
-    font-size: 4em;
     font-family: 'Raleway', sans-serif;
 }
 
-h1 {
+.header {
     font-family: 'Poiret One', cursive;
 }
 
@@ -30,6 +29,14 @@ a {
     text-decoration: none;
     &:hover {
         text-decoration: none;
+    }
+}
+
+.hero {
+    font-size: 2rem;
+
+    .header {
+        font-size: 4rem;
     }
 }
 
