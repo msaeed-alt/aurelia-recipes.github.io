@@ -1,0 +1,16 @@
+<template>
+  <require from='./nav-bar.css'></require>
+  <nav class="nav-container">
+    <ul class="nav-items">
+      <li class="brand nav-item">
+        <a href="#" title="home">Recipe Book</a>
+        <svg class="nav-chevron" svg-inject="resources/images/svg/Chevron"></svg>
+      </li>
+      <li class="nav-item" repeat.for="nav of router.navigation">
+        <a href.bind="nav.href" title.bind="nav.title">
+          <span>${nav.title}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>

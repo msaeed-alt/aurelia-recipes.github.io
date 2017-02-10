@@ -30,6 +30,12 @@
     "fileExtension": ".scss",
     "source": "src/**/*.scss"
   },
+  "svgProcessor": {
+    "id": "none",
+    "displayName": "None",
+    "fileExtension": ".svg",
+    "source": "src/**/*.svg"
+  },
   "editor": {
     "id": "vscode",
     "displayName": "Visual Studio Code"
@@ -69,9 +75,10 @@
           "name": "text",
           "extensions": [
             ".html",
-            ".css"
+            ".css",
+            ".svg"
           ],
-          "stub": true
+          "stub": false
         }
       ]
     },
@@ -85,6 +92,12 @@
         "source": [
           "[**/*.js]",
           "**/*.{css,html}"
+        ]
+      },
+      {
+        "name": "svg-bundle.js",
+        "source": [
+          "**/*.svg"
         ]
       },
       {

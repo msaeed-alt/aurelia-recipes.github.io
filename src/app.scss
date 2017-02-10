@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One|Raleway');
 
 html {
-    background: #0fb4e7; /* Old browsers */
-    background: -moz-linear-gradient(45deg, #0fb4e7 0%, #78d3ed 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #0fb4e7 0%,#78d3ed 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #0fb4e7 0%,#78d3ed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0fb4e7', endColorstr='#78d3ed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    // background: #cbd1d8; /* Old browsers */
+    // background: -moz-linear-gradient(-45deg, #cbd1d8 0%, #8994a1 100%); /* FF3.6-15 */
+    // background: -webkit-linear-gradient(-45deg, #cbd1d8 0%,#8994a1 100%); /* Chrome10-25,Safari5.1-6 */
+    // background: linear-gradient(135deg, #cbd1d8 0%,#8994a1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbd1d8', endColorstr='#8994a1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     
     height: 100%; //Make sure that background fills up entire space;
     background-repeat: no-repeat;
@@ -13,31 +13,31 @@ html {
     
 }
 body {
-    color: white;
     font-family: 'Raleway', sans-serif;
+    margin: 0;
 }
 
-.header {
-    font-family: 'Poiret One', cursive;
-}
+// .header {
+//     font-family: 'Poiret One', cursive;
+// }
 
-mark {
-    background-color: rgba(209, 98, 255, 0.56);
-    color:white;
-}
-a {
-    text-decoration: none;
-    &:hover {
-        text-decoration: none;
-    }
-}
+// mark {
+//     background-color: rgba(209, 98, 255, 0.56);
+//     color:white;
+// }
+// a {
+//     text-decoration: none;
+//     &:hover {
+//         text-decoration: none;
+//     }
+// }
 
-.hero {
-    font-size: 2rem;
+// .hero {
+//     font-size: 2rem;
 
-    .header {
-        font-size: 4rem;
-    }
-}
+//     .header {
+//         font-size: 4rem;
+//     }
+// }
 
 // Display/Header fonts: https://fonts.google.com/specimen/Poiret+One
