@@ -24,6 +24,12 @@
     "fileExtension": ".html",
     "source": "src/**/*.html"
   },
+  "markdownProcessor": {
+    "id": "none",
+    "displayName": "None",
+    "fileExtension": ".md",
+    "source": "src/**/*.md"
+  },
   "cssProcessor": {
     "id": "sass",
     "displayName": "Sass",
@@ -84,7 +90,8 @@
     },
     "options": {
       "minify": "stage & prod",
-      "sourcemaps": "dev & stage"
+      "sourcemaps": "dev & stage",
+      "rev": "prod"
     },
     "bundles": [
       {
@@ -107,6 +114,11 @@
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
+          {
+            "name": "milligram",
+            "path": "../node_modules/milligram/dist",
+            "main": "milligram.css"
+          },
           "aurelia-binding",
           "aurelia-bootstrapper",
           "aurelia-dependency-injection",

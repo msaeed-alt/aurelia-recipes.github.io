@@ -14,12 +14,14 @@
     "aurelia-loader": "^1.0.0",
     "aurelia-router": "^1.1.1",
     "bluebird": "^3.4.1",
+    "markdown-it": "^8.3.0",
+    "milligram": "^1.3.0",
     "requirejs": "^2.3.2",
     "text": "github:requirejs/text"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "aurelia-cli": "^0.21.0",
+    "aurelia-cli": "^0.24.0",
     "aurelia-testing": "^1.0.0-beta.2.0.0",
     "aurelia-tools": "^0.2.2",
     "babel-eslint": "^6.0.4",
