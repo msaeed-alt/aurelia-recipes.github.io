@@ -24,11 +24,12 @@
     "fileExtension": ".html",
     "source": "src/**/*.html"
   },
-  "markdownProcessor": {
+  "postProcessor": {
     "id": "none",
     "displayName": "None",
     "fileExtension": ".md",
-    "source": "src/**/*.md"
+    "output": "scripts/posts",
+    "source": ["src/**/*.md", "posts/**/*.md"]
   },
   "cssProcessor": {
     "id": "sass",
