@@ -10,8 +10,7 @@ const md = new MarkdownIt();
 let postsMetadata = [];
 
 export default gulp.series(
-    processPosts,
-    writePostMetadata
+    processPosts
 );
 function writePostMetadata() {
     return vinyl.dest(project.postProcessor.output + '/metadata.json', JSON.stringify(postsMetadata));
