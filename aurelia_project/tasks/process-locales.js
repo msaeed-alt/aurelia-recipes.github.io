@@ -49,13 +49,33 @@ function getTranslations() {
             // });
             // parser.write(file.contents.toString());
             // addTextToTranslationFiles(Array.from(textKeys));
-
-            jsdom.env(
-                file.contents.toString(),
+            let textKeys = new Map();
+            let test = jsdom.env(
+                `<html><body>${file.contents.toString()}</body></html>`, //Wrapping in html/body for fragments to be loaded
                 function(err, window) {
-                    console.log(err);
-                    let i18nElement = window.document.querySelector('p');
-                    console.log(i18nElement.innerHTML);
+                    if (err) {
+                        console.log('Trouble making the window for scraping');
+                        console.log(err);
+                    }
+                    //Create "Template" in body
+                    let t = window.document.querySelector('template');
+                    let tInstance = window.document.importNode(t.content, true);
+                    window.document.body.appendChild(tInstance);
+
+                    let i18nElements = window.document.querySelectorAll('[i18n]', '[t]');
+                    if (i18nElements.length > 0) {
+                        for (let elem of i18nElements) {
+                            let i18nKey = elem.getAttribute('i18n');
+                            let tKey = elem.getAttribute('t');
+                            let translationKey = tKey || i18nKey;
+
+                            let currentElemText = elem.textContent;
+
+                            setTranslationKey(translationKey, currentElemText, textKeys);
+                        }
+                    }
+
+                    console.log(textKeys);
                     window.close();
                 });
 
@@ -105,4 +125,7 @@ function addTextToTranslationFiles(textKeys) {
             frLocale[key] = key; //Key(en) : Translation(en by default)
         }
     }
+}
+function setTranslationKey(key, value, keys) {
+
 }
