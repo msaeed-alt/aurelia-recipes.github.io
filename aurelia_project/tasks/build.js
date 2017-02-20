@@ -9,22 +9,22 @@ import {build} from 'aurelia-cli';
 import project from '../aurelia.json';
 
 export default gulp.series(
-  // readProjectConfiguration,
-  // gulp.parallel(
-  //   transpile,
-  //   processMarkup,
-  //   processPosts,
-  //   processSVG,
-  //   processCSS
-  // ),
-  processLocales//,
-  // writeBundles
+    readProjectConfiguration,
+    gulp.parallel(
+      transpile,
+      processMarkup,
+      processPosts,
+      processSVG,
+      processCSS
+    ),
+    processLocales,
+    writeBundles
 );
 
 function readProjectConfiguration() {
-  return build.src(project);
+    return build.src(project);
 }
 
 function writeBundles() {
-  return build.dest();
+    return build.dest();
 }

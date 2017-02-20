@@ -85,61 +85,62 @@ define('environment',["exports"], function (exports) {
   };
 });
 define('main',['exports', './environment', 'aurelia-i18n'], function (exports, _environment, _aureliaI18n) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.configure = configure;
-
-  var _environment2 = _interopRequireDefault(_environment);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  Promise.config({
-    warnings: {
-      wForgottenReturn: false
-    }
-  });
-
-  function configure(aurelia) {
-    aurelia.use.standardConfiguration().feature('resources').plugin('aurelia-i18n', function (instance) {
-      window.i18n = instance;
-      instance.i18next.use(_aureliaI18n.Backend.with(aurelia.loader));
-
-      return instance.setup({
-        backend: {
-          loadPath: '/locales/{{lng}}/{{ns}}.json' },
-        lng: 'en',
-        attributes: ['t', 'i18n'],
-        fallbackLng: 'en',
-        debug: true
-      });
-    });
-
-    if (_environment2.default.debug) {
-      aurelia.use.developmentLogging();
-    }
-
-    if (_environment2.default.testing) {
-      aurelia.use.plugin('aurelia-testing');
-    }
-
-    aurelia.start().then(function () {
-      return aurelia.setRoot();
-    });
-  }
-});
-define('home/home',["exports"], function (exports) {
-    "use strict";
+    'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+    exports.configure = configure;
+
+    var _environment2 = _interopRequireDefault(_environment);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    Promise.config({
+        warnings: {
+            wForgottenReturn: false
+        }
+    });
+
+    function configure(aurelia) {
+        aurelia.use.standardConfiguration().feature('resources').plugin('aurelia-i18n', function (instance) {
+            window.i18n = instance;
+            instance.i18next.use(_aureliaI18n.Backend.with(aurelia.loader));
+
+            return instance.setup({
+                backend: {
+                    loadPath: '/locales/{{lng}}/{{ns}}.json' },
+                lng: 'fr',
+                attributes: ['t', 'i18n'],
+                fallbackLng: 'en',
+                debug: true
+            });
+        });
+
+        if (_environment2.default.debug) {
+            aurelia.use.developmentLogging();
+        }
+
+        if (_environment2.default.testing) {
+            aurelia.use.plugin('aurelia-testing');
+        }
+
+        aurelia.start().then(function () {
+            return aurelia.setRoot();
+        });
+    }
+});
+define('home/home',['exports', 'aurelia-framework', 'aurelia-i18n'], function (exports, _aureliaFramework, _aureliaI18n) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.Home = undefined;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -147,9 +148,15 @@ define('home/home',["exports"], function (exports) {
         }
     }
 
-    var Home = exports.Home = function Home() {
+    var _dec, _class;
+
+    var Home = exports.Home = (_dec = (0, _aureliaFramework.inject)(_aureliaI18n.I18N), _dec(_class = function Home(i18n) {
         _classCallCheck(this, Home);
-    };
+
+        this.i18n = i18n;
+
+        this.dynamicIntro = this.i18n.tr('home.dynoIntro');
+    }) || _class);
 });
 define('instructions/home',["exports"], function (exports) {
     "use strict";
@@ -3968,16 +3975,16 @@ define('aurelia-i18n/aurelia-i18n-loader',['exports'], function (exports) {
   }
 });
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <require from=\"milligram.css\"></require>\n  <require from=\"./app.css\"></require>\n  <nav-bar router.bind=\"router\"></nav-bar>\n  <router-view></router-view>\n</template>\n"; });
-define('text!construction.html', ['module'], function(module) { module.exports = "<template>\n  <h1>Pardon the potholes, site is under construction</h1>\n</template>\n"; });
 define('text!app.css', ['module'], function(module) { module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Poiret+One|Raleway\");\nhtml {\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: fixed; }\n\nbody {\n  font-family: 'Raleway', sans-serif;\n  margin: 0; }\n"; });
-define('text!home/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1 i18n=\"home.title\">Hello world</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <p i18n=\"[html]home.welcome\">Don't worry, I'll be filled up soon with some great <a href='http://aurelia.io'><mark>Javascript</mark></a> recipes.</p>\n            </div>\n        </div>\n    </section>\n</template>"; });
-define('text!instructions/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    instructions\n</template>"; });
-define('text!recipes/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1>Delicious Recipes</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <compose view=\"/posts/2017/02/2017-02-01-so-you-want-to-build-a-recipe-site.html\" containerless></compose>\n            </div>\n        </div>\n    </section>\n</template>"; });
+define('text!construction.html', ['module'], function(module) { module.exports = "<template>\n  <h1 i18n=\"construction.title\">Pardon the potholes, site is under construction</h1>\n</template>\n"; });
 define('text!home/home.css', ['module'], function(module) { module.exports = ""; });
-define('text!source-code/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    source code\n</template>"; });
+define('text!home/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1 i18n=\"home.title\">Hello world</h2>\n                <h2>${dynamicIntro}</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <!--<h4 i18n=\"$t(home.title2) $t(home.subtitle)\">Title Subtitle</h4>-->\n                <p i18n=\"[html]home.welcome\">Don't worry, I'll be filled up soon with some great <a href='http://aurelia.io'><mark>Javascript</mark></a> recipes.</p>\n                <span i18n=\"home.test;[title]home.testTitle\" title=\"I'm a title tester'\">I'm an attribute tester</span>\n                <input i18n=\"[placeholder]home.testInput\" placeholder=\"I'm a placeholder tester\"/>\n            </div>\n        </div>\n    </section>\n</template>"; });
 define('text!instructions/home.css', ['module'], function(module) { module.exports = ""; });
-define('text!resources/elements/nav-bar/nav-bar.html', ['module'], function(module) { module.exports = "<template>\n  <require from='./nav-bar.css'></require>\n  <nav class=\"nav-container\">\n    <ul class=\"nav-items\">\n      <li class=\"brand nav-item\">\n        <a href=\"#\" title=\"home\">Recipe Book</a>\n        <svg class=\"nav-chevron\" svg-inject=\"resources/images/svg/Chevron\"></svg>\n      </li>\n      <li class=\"nav-item ${nav.isActive ? 'active' : ''}\" repeat.for=\"nav of router.navigation\">\n        <a href.bind=\"nav.href\" title.bind=\"nav.title\">\n          <span>${nav.title}</span>\n        </a>\n      </li>\n    </ul>\n  </nav>\n</template>"; });
+define('text!instructions/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    instructions\n</template>"; });
 define('text!recipes/home.css', ['module'], function(module) { module.exports = ""; });
+define('text!recipes/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1>Delicious Recipes</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <compose view=\"/posts/2017/02/2017-02-01-so-you-want-to-build-a-recipe-site.html\" containerless></compose>\n            </div>\n        </div>\n    </section>\n</template>"; });
 define('text!source-code/home.css', ['module'], function(module) { module.exports = ""; });
+define('text!source-code/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    source code\n</template>"; });
 define('text!resources/elements/nav-bar/nav-bar.css', ['module'], function(module) { module.exports = "nav-bar {\n  display: block;\n  height: 50px;\n  background-color: #7AB6DB; }\n  nav-bar .nav-container {\n    height: 100%; }\n  nav-bar .nav-items {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    height: 100%;\n    display: -webkit-box;\n    /* OLD - iOS 6-, Safari 3.1-6 */\n    display: -moz-box;\n    /* OLD - Firefox 19- (buggy but mostly works) */\n    display: -ms-flexbox;\n    /* TWEENER - IE 10 */\n    display: -webkit-flex;\n    /* NEW - Chrome */\n    display: flex; }\n  nav-bar .nav-item {\n    height: 100%;\n    padding: 0 1rem;\n    line-height: 50px;\n    color: white;\n    text-shadow: 0px 0px 0px transparent;\n    transition: text-shadow .2s ease-in-out; }\n    nav-bar .nav-item.active {\n      background-color: #5594c2; }\n    nav-bar .nav-item:hover {\n      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.67); }\n    nav-bar .nav-item a, nav-bar .nav-item a:hover {\n      color: inherit;\n      text-decoration: none; }\n      nav-bar .nav-item a:hover, nav-bar .nav-item a:hover:hover {\n        text-decoration: none; }\n  nav-bar .nav-chevron {\n    display: inline-block;\n    width: 8px;\n    height: 8px; }\n  nav-bar .brand {\n    background-color: black;\n    color: white; }\n"; });
+define('text!resources/elements/nav-bar/nav-bar.html', ['module'], function(module) { module.exports = "<template>\n  <require from='./nav-bar.css'></require>\n  <nav class=\"nav-container\">\n    <ul class=\"nav-items\">\n      <li class=\"brand nav-item\">\n        <a href=\"#\" title=\"home\">Recipe Book</a>\n        <svg class=\"nav-chevron\" svg-inject=\"resources/images/svg/Chevron\"></svg>\n      </li>\n      <li class=\"nav-item ${nav.isActive ? 'active' : ''}\" repeat.for=\"nav of router.navigation\">\n        <a href.bind=\"nav.href\" title.bind=\"nav.title\">\n          <span>${nav.title}</span>\n        </a>\n      </li>\n    </ul>\n  </nav>\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map

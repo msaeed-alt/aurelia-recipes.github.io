@@ -1,16 +1,13 @@
 {
 	"home": {
 		"title": "Bonjour le monde",
-		"welcome": "Ne vous inquiétez pas, je serai bientôt comblé <a href='http://aurelia.io'><mark>Javascript</mark></a> recettes."
+		"welcome": "Ne vous inquiétez pas, je serai bientôt comblé de quelques <a href=\"http://aurelia.io\"> <mark> Javascript </ mark> </a> recettes.",
+		"test": "Je suis un testeur d'attribut",
+		"testTitle": "Je suis un testeur de titre '",
+		"testInput": "Je suis un testeur d'espace réservé",
+		"dynoIntro": "Je suis dynamique!"
 	},
-	"Pardon the potholes, site is under construction": "Pardon les nids de poule, le site est en construction",
-	"Hello world": "Bonjour le monde",
-	"Don't worry, I'll be filled up soon with some great": "Ne vous inquiétez pas, je serai bientôt comblé",
-	"Javascript": "Javascript",
-	"recipes.": "recettes.",
-	"instructions": "instructions",
-	"Delicious Recipes": "Recettes délicieuses",
-	"source code": "code source",
-	"Recipe Book": "Livre de recettes",
-	"${nav.title}": "$ {Nav.title}"
+	"construction": {
+		"title": "Pardon les nids de poule, le site est en construction"
+	}
 }
