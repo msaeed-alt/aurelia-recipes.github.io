@@ -54,22 +54,26 @@ function processLocales() {
     return gulp.src(project.localeProcessor.source)
         .pipe(through.obj((file, enc, cb) => {
             let translationRequests = [];
-            let localTranslation = JSON.parse(file.contents.toString());
-            for (let key in localTranslation) {
-                translationRequests.push(
-                    translate(key, {from: 'en', to: 'fr'}).then(res => {
-                        localTranslation[key] = res.text;
-                    }).catch(err => {
-                        console.error(err);
-                    })
-                );
+            let localeTranslation = JSON.parse(file.contents.toString());
+            for (let key in localeTranslation) {
+                if (key === localeTranslation[key]) {
+                    //If we haven't translated
+                    translationRequests.push(
+                        translate(key, {from: 'en', to: 'fr'}).then(res => {
+                            localeTranslation[key] = res.text;
+                        }).catch(err => {
+                            console.error(err);
+                        })
+                    );
+                }
             }
-            file.contents = new Buffer(JSON.stringify(localTranslation, null, '\t'));
             Promise.all(translationRequests)
                 .then(() => {
+                    file.contents = new Buffer(JSON.stringify(localeTranslation, null, '\t'));
                     cb(null, file);
                 });
         }))
+        .pipe(gulp.dest('locales/'))
         .pipe(gulp.dest(project.localeProcessor.output));
 }
 
