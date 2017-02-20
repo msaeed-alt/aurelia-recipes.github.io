@@ -2,7 +2,8 @@ import gulp from 'gulp';
 import project from '../aurelia.json';
 import through from 'through2';
 import fs from 'fs';
-import htmlparser from 'htmlparser2';
+//import htmlparser from 'htmlparser2';
+import jsdom from 'jsdom';
 
 import translate from 'google-translate-api';
 
@@ -11,9 +12,9 @@ import frLocale from '../../locales/fr/translation.json';
 
 
 export default gulp.series(
-    getTranslations,
-    writeLocales,
-    processLocales
+    getTranslations//,
+    //writeLocales,
+    //processLocales
 );
 
 function getTranslations() {
@@ -28,22 +29,37 @@ function getTranslations() {
     //         }));
     //     }
     // }
+
     //For right now, we'll just get all the html in the src
     return gulp.src(project.localeProcessor.translate)
         .pipe(through.obj((file, enc, cb) => {
             //get text from file
             //place text as keys in locale
-            let textKeys = new Set();
-            let parser = new htmlparser.Parser({
-                ontext: function(text) {
-                    let strippedText = getTextOnlyContent(text);
-                    if (strippedText.length > 0) {
-                        textKeys.add(strippedText);
-                    }
-                }
-            });
-            parser.write(file.contents.toString());
-            addTextToTranslationFiles(Array.from(textKeys));
+            // let textKeys = new Set();
+            // let parser = new htmlparser.Parser({
+            //     ontext: function(text) {
+            //         let strippedText = getTextOnlyContent(text);
+            //         if (strippedText.length > 0) {
+            //             textKeys.add(strippedText);
+            //         }
+            //     },
+            //     onattribute: function(attribute, value) {
+            //         console.log(attribute);
+            //     }
+            // });
+            // parser.write(file.contents.toString());
+            // addTextToTranslationFiles(Array.from(textKeys));
+
+            jsdom.env(
+                file.contents.toString(),
+                function(err, window) {
+                    console.log(err);
+                    let i18nElement = window.document.querySelector('p');
+                    console.log(i18nElement.innerHTML);
+                    window.close();
+                });
+
+
             cb(null, file);
         }));
 }

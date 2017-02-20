@@ -11,7 +11,13 @@ export class App {
         config.title = 'Aurelia';
         config.map([
             {
-                route: ['', 'home'],
+                route: [''],
+                name: 'construction',
+                title: 'Under Construction',
+                moduleId: 'construction'
+            },
+            {
+                route: ['home'],
                 name: 'home',
                 title: 'Recipe Book',
                 moduleId: 'home/home'
