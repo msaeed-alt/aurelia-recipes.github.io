@@ -161,7 +161,7 @@
           {
             "name": "i18next-localstorage-cache",
             "path": "../node_modules/i18next-localstorage-cache/dist/umd",
-            "main": "i18nextLocalStorageCache.min"
+            "main": "i18nextLocalStorageCache"
           },
           {
             "name": "i18next-browser-languagedetector",

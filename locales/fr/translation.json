@@ -3,7 +3,7 @@
 		"title": "Pardon les nids de poule, le site est en construction"
 	},
 	"home": {
-		"dynoIntro": "__NEEDS_TRANSLATION",
+		"dynoIntro": "__NEEDS_TRANSLATION__",
 		"title": "Bonjour le monde",
 		"welcome": "Ne vous inquiétez pas, je serai bientôt comblé de quelques <a href=\"http://aurelia.io\"> <mark> Javascript </ mark> </a> recettes.",
 		"test": "Je suis un testeur d'attribut",

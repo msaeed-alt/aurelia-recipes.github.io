@@ -3,7 +3,7 @@
 		"title": "Pardon the potholes, site is under construction"
 	},
 	"home": {
-		"dynoIntro": "__NEEDS_TRANSLATION",
+		"dynoIntro": "__NEEDS_TRANSLATION__",
 		"title": "Hello world",
 		"welcome": "Don't worry, I'll be filled up soon with some great <a href=\"http://aurelia.io\"><mark>Javascript</mark></a> recipes.",
 		"test": "I'm an attribute tester",

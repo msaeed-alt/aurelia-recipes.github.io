@@ -1,6 +1,6 @@
 import environment from './environment';
 import {I18N, Backend} from 'aurelia-i18n';
-import Cache from 'i18next-localstorage-cache';
+//import Cache from 'i18next-localstorage-cache';
 import LngDetector from 'i18next-browser-languagedetector';
 
 
@@ -22,7 +22,7 @@ export function configure(aurelia) {
           window.i18n = instance;
           instance.i18next
             .use(Backend.with(aurelia.loader))
-            .use(Cache)
+            //.use(Cache)
             .use(LngDetector)
             .init({
                 cache: {
