@@ -3,15 +3,11 @@
 		"title": "Hello world",
 		"welcome": "Don't worry, I'll be filled up soon with some great <a href=\"http://aurelia.io\"><mark>Javascript</mark></a> recipes.",
 		"test": "I'm an attribute tester",
-		"testTitle": "I'm a title tester'",
-		"testInput": "I'm a placeholder tester"
+		"testTitle": "I'm a title tester",
+		"testInput": "I'm a placeholder tester",
+		"dynoIntro": "I'm dynamic!"
 	},
 	"construction": {
 		"title": "Pardon the potholes, site is under construction"
-	},
-	"$t(home": {
-		"title2) $t(home": {
-			"subtitle)": "Title Subtitle"
-		}
 	}
 }

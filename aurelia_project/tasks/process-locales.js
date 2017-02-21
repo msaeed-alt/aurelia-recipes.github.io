@@ -51,8 +51,8 @@ function getPhrases() {
 
                         //Strange bug with querySelectorAll and passing multiple selectors. So we're going to make two seperate calls
                         let i18nElements = window.document.querySelectorAll('[i18n]');
-                        //let tElements = window.document.querySelectorAll('[t]'); //Bug exists with the `t` attribute currently
-                        let elementsToTranslate = i18nElements;//.concat(tElements);
+                        //let tElements = window.document.querySelectorAll('[t]'); //Bug exists with the `t` attribute currently (https://github.com/tmpvar/jsdom/issues/1740)
+                        let elementsToTranslate = i18nElements;//.concat(tElements); //Concat once we get the bug fixed
 
                         if (elementsToTranslate.length > 0) {
                             for (let elem of elementsToTranslate) {
@@ -153,10 +153,11 @@ function addTextToTranslationFiles(textKeys) {
     deepExtend(enLocale, textKeys);
 }
 function setTranslationKey(key, value, keys, silent = false) { // "home.title.foo", "title.foo", "foo"
+    //Used to set the translation key deep in the locale object
     let keyParts = key.split('.');
     if (keyParts.length === 1) { //End of the line
         if (keys[key] && !silent) {
-            console.log(`Duplicate translation key (${key}) found. Last in wins... Suckers`);
+            console.log(`Duplicate translation key (${key}) found. Last in wins.`);
         }
         return keys[key] = value;
     }
@@ -182,7 +183,7 @@ function deepExtend(out) {
                     out[key] = deepExtend(out[key], obj[key]);
                 } else {
                     if (out[key]) {
-                        console.log(`Duplicate translation key (${key}) found while extending. Last in wins... Suckers`);
+                        console.log(`Duplicate translation key (${key}) found while extending. Last in wins.`);
                     }
                     out[key] = obj[key];
                 }
