@@ -159,6 +159,16 @@
             "main": "aurelia-i18n"
           },
           {
+            "name": "i18next-localstorage-cache",
+            "path": "../node_modules/i18next-localstorage-cache/dist/umd",
+            "main": "i18nextLocalStorageCache.min"
+          },
+          {
+            "name": "i18next-browser-languagedetector",
+            "path": "../node_modules/i18next-browser-languagedetector/dist/umd",
+            "main": "i18nextBrowserLanguageDetector.min"
+          },
+          {
             "name": "text",
             "path": "../node_modules/text/text"
           },
