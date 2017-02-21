@@ -2891,6 +2891,14 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18next-browser-languagedetector:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-1.0.1.tgz#73e43aa46fc1c909cac6178b9d1b803d02610faa"
+
+i18next-localstorage-cache:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/i18next-localstorage-cache/-/i18next-localstorage-cache-0.3.0.tgz#124cc8b6291160e2bd44127ff361879000314385"
+
 i18next@^3.4.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-3.5.2.tgz#930390d5c318ceaa4858b52dd0e40e6b203f9f41"

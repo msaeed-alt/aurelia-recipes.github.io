@@ -8,7 +8,7 @@ export class App {
 
     configureRouter(config, router) {
         this.router = router;
-        config.title = 'Aurelia';
+        config.title = 'Recipe Book';
         config.map([
             {
                 route: [''],
