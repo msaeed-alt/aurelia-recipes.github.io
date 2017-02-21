@@ -1,13 +1,13 @@
 {
+	"construction": {
+		"title": "Pardon les nids de poule, le site est en construction"
+	},
 	"home": {
+		"dynoIntro": "__NEEDS_TRANSLATION",
 		"title": "Bonjour le monde",
 		"welcome": "Ne vous inquiétez pas, je serai bientôt comblé de quelques <a href=\"http://aurelia.io\"> <mark> Javascript </ mark> </a> recettes.",
 		"test": "Je suis un testeur d'attribut",
 		"testTitle": "Je suis un testeur de titre",
-		"testInput": "Je suis un testeur d'espace réservé",
-		"dynoIntro": "Je suis dynamique!"
-	},
-	"construction": {
-		"title": "Pardon les nids de poule, le site est en construction"
+		"testInput": "Je suis un testeur d'espace réservé"
 	}
 }

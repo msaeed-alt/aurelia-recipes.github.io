@@ -51,6 +51,8 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
     "htmlparser2": "^3.9.2",
+    "i18next-json-sync": "^2.0.0",
+    "i18next-scanner": "^1.5.1",
     "jasmine-core": "^2.4.1",
     "jsdom": "^9.11.0",
     "karma": "^0.13.22",

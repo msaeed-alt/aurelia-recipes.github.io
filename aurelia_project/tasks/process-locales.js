@@ -2,37 +2,29 @@ import gulp from 'gulp';
 import project from '../aurelia.json';
 import through from 'through2';
 import fs from 'fs';
-//import htmlparser from 'htmlparser2';
+
 import jsdom from 'jsdom';
+import sync from 'i18next-json-sync';
 
 import translate from 'google-translate-api';
 
 import enLocale from '../../locales/en/translation.json';
 import frLocale from '../../locales/fr/translation.json';
 
+import processi18n from './process-i18n';
+
 
 export default gulp.series(
+    processi18n, //Used as an initial setting for keys. If we have any mismatch with getting the actual phrases, we need to notify
     getPhrases,
     writeToLocaleFiles,
-    translateLocales
+    translateLocales,
+    //syncLocales
 );
 
 //Executions
 function getPhrases() {
-    //TODO: loop through bundles and only get html that is in a bundle
-    // let htmlSources = [];
-    // for (let i = 0; i < project.build.bundles.length; i++) {
-    //     let bundle = project.build.bundles[i];
-    //     if (Array.isArray(bundle.source)) {
-    //         htmlSources.concat(bundle.source.map(source => {
-    //             //For right now, we're just pulling out text from html files
-
-    //         }));
-    //     }
-    // }
-
-    //For right now, we'll just get all the html in the src
-    return gulp.src(project.localeProcessor.translate)
+    return gulp.src(project.localeProcessor.translate) //Don't have a way to get translation from javascript files, will have to manually add those
         .pipe(through.obj((file, enc, cb) => {
             let promise = new Promise((resolve, reject) => {
                 jsdom.env(
@@ -145,6 +137,12 @@ function translateLocales() {
         }))
         .pipe(gulp.dest('locales/'))
         .pipe(gulp.dest(project.localeProcessor.output));
+}
+function syncLocales() {
+    return sync({
+        files: '../../locales/**/*.json',
+        primary: 'en'
+    });
 }
 
 //Utility functions
