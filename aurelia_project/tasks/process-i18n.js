@@ -51,6 +51,6 @@ function parseTranslations() {
                 savePath: '../../locales/{{lng}}/{{ns}}.json'
             }
         }))
-        .pipe(gulp.dest('wwwroot/locales'));
+        .pipe(gulp.dest('docs/locales'));
 }
 

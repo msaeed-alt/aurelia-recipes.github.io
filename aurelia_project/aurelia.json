@@ -4,9 +4,9 @@
   "platform": {
     "id": "web",
     "displayName": "Web",
-    "output": "wwwroot/dist",
+    "output": "docs/dist",
     "baseUrl": "dist",
-    "index": "wwwroot/index.html"
+    "index": "docs/index.html"
   },
   "transpiler": {
     "id": "babel",
@@ -29,7 +29,7 @@
     "id": "none",
     "displayName": "None",
     "fileExtension": ".md",
-    "output": "wwwroot/posts",
+    "output": "docs/posts",
     "source": ["src/**/*.md", "posts/**/*.md"]
   },
   "cssProcessor": {
@@ -46,7 +46,7 @@
   },
   "localeProcessor": {
     "source": "locales/**/*.json",
-    "output": "wwwroot/locales",
+    "output": "docs/locales",
     "translate": ["src/**/*.html"]
   },
   "editor": {
@@ -75,9 +75,9 @@
       {
         "id": "web",
         "displayName": "Web",
-        "output": "wwwroot/dist",
+        "output": "docs/dist",
         "baseUrl": "dist",
-        "index": "wwwroot/index.html"
+        "index": "docs/index.html"
       }
     ],
     "loader": {
