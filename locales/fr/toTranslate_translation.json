@@ -9,5 +9,23 @@
 		"test": "Je suis un testeur d'attribut",
 		"testTitle": "Je suis un testeur de titre",
 		"testInput": "Je suis un testeur d'espace réservé"
+	},
+	"navbar": {
+		"home": "Livre de recettes"
+	},
+	"navigation": {
+		"construction": "En construction",
+		"home": "Accueil",
+		"recipes": "Recettes",
+		"instructions": "Instructions",
+		"source-code": "Code source"
+	},
+	"recipes": {
+		"home": {
+			"title": "Recettes délicieuses"
+		}
+	},
+	"site": {
+		"name": "Livre de recettes"
 	}
 }

@@ -1,4 +1,4 @@
-define('app',['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
+define('app',['exports', 'aurelia-framework', 'aurelia-i18n'], function (exports, _aureliaFramework, _aureliaI18n) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -12,49 +12,53 @@ define('app',['exports', 'aurelia-framework'], function (exports, _aureliaFramew
         }
     }
 
-    var App = exports.App = function () {
-        function App() {
+    var _dec, _class;
+
+    var App = exports.App = (_dec = (0, _aureliaFramework.inject)(i18n), _dec(_class = function () {
+        function App(i18n) {
             _classCallCheck(this, App);
 
             this.router = null;
+
+            this.i18n = i18n;
         }
 
         App.prototype.configureRouter = function configureRouter(config, router) {
             this.router = router;
-            config.title = 'Recipe Book';
+            config.title = this.i18n.tr('site.name');
             config.map([{
                 route: [''],
                 name: 'construction',
-                title: 'Under Construction',
+                title: this.i18n.tr('navigation.construction'),
                 moduleId: 'construction'
             }, {
                 route: ['home'],
                 name: 'home',
-                title: 'Recipe Book',
+                title: this.i18n.tr('navigation.home'),
                 moduleId: 'home/home'
             }, {
                 route: 'recipes',
                 name: 'recipes',
-                title: 'Recipes',
+                title: this.i18n.tr('navigation.recipes'),
                 moduleId: 'recipes/home',
                 nav: true
             }, {
                 route: 'instructions',
                 name: 'instructions',
-                title: 'Instructions',
+                title: this.i18n.tr('navigation.instructions'),
                 moduleId: 'instructions/home',
                 nav: true
             }, {
                 route: 'source-code',
                 name: 'source-code',
-                title: 'Source Code',
+                title: this.i18n.tr('navigation.source-code'),
                 moduleId: 'source-code/home',
                 nav: true
             }]);
         };
 
         return App;
-    }();
+    }()) || _class);
 });
 define('construction',["exports"], function (exports) {
     "use strict";
@@ -138,7 +142,7 @@ define('main',['exports', './environment', 'aurelia-i18n', 'i18next-browser-lang
             return instance.setup({
                 backend: {
                     loadPath: '/locales/{{lng}}/{{ns}}.json' },
-                lng: 'en',
+                lng: 'fr',
                 attributes: ['t', 'i18n'],
                 fallbackLng: 'en',
                 debug: true
@@ -278,7 +282,7 @@ define('resources/attributes/svg-inject',['exports', 'aurelia-framework'], funct
         return SvgInjectCustomAttribute;
     }()) || _class);
 });
-define('resources/elements/nav-bar/nav-bar',['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
+define('resources/elements/nav-bar/nav-bar',['exports', 'aurelia-framework', 'aurelia-event-aggregator', 'aurelia-i18n'], function (exports, _aureliaFramework, _aureliaEventAggregator, _aureliaI18n) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -335,22 +339,31 @@ define('resources/elements/nav-bar/nav-bar',['exports', 'aurelia-framework'], fu
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _desc, _value, _class, _descriptor;
+    var _dec, _class, _desc, _value, _class2, _descriptor;
 
-    var NavBar = exports.NavBar = (_class = function () {
-        function NavBar() {
+    var NavBar = exports.NavBar = (_dec = (0, _aureliaFramework.inject)(i18n, _aureliaEventAggregator.EventAggregator), _dec(_class = (_class2 = function () {
+        function NavBar(i18n, ea) {
+            var _this = this;
+
             _classCallCheck(this, NavBar);
 
             _initDefineProp(this, 'router', _descriptor, this);
+
+            this.i18n = i18n;
+            this.ea = ea;
+
+            ea.subscribe('i18n:locale:changed', function (payload) {
+                _this.i18n.updateTranslations(_this.element);
+            });
         }
 
         NavBar.prototype.bind = function bind() {};
 
         return NavBar;
-    }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'router', [_aureliaFramework.bindable], {
+    }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'router', [_aureliaFramework.bindable], {
         enumerable: true,
         initializer: null
-    })), _class);
+    })), _class2)) || _class);
 });
 define('aurelia-templating-resources/compose',['exports', 'aurelia-dependency-injection', 'aurelia-task-queue', 'aurelia-templating', 'aurelia-pal'], function (exports, _aureliaDependencyInjection, _aureliaTaskQueue, _aureliaTemplating, _aureliaPal) {
   'use strict';
@@ -4006,9 +4019,9 @@ define('text!home/home.html', ['module'], function(module) { module.exports = "<
 define('text!instructions/home.css', ['module'], function(module) { module.exports = ""; });
 define('text!instructions/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    instructions\n</template>"; });
 define('text!recipes/home.css', ['module'], function(module) { module.exports = ""; });
-define('text!recipes/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1>Delicious Recipes</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <!--<compose view=\"/posts/2017/02/2017-02-01-so-you-want-to-build-a-recipe-site.html\" containerless></compose>-->\n            </div>\n        </div>\n    </section>\n</template>"; });
+define('text!recipes/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    <section class=\"container\">\n        <div class=\"row\">\n            <header class=\"column\">\n                <h1 i18n=\"recipes.home.title\">Delicious Recipes</h2>\n            </header>\n        </div>\n        <div class=\"row\">\n            <div class=\"column\">\n                <compose view=\"/posts/2017/02/2017-02-01-so-you-want-to-build-a-recipe-site.html\" containerless></compose>\n            </div>\n        </div>\n    </section>\n</template>"; });
 define('text!source-code/home.css', ['module'], function(module) { module.exports = ""; });
 define('text!source-code/home.html', ['module'], function(module) { module.exports = "<template>\n    <require from='./home.css'></require>\n    source code\n</template>"; });
 define('text!resources/elements/nav-bar/nav-bar.css', ['module'], function(module) { module.exports = "nav-bar {\n  display: block;\n  height: 50px;\n  background-color: #7AB6DB; }\n  nav-bar .nav-container {\n    height: 100%; }\n  nav-bar .nav-items {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n    height: 100%;\n    display: -webkit-box;\n    /* OLD - iOS 6-, Safari 3.1-6 */\n    display: -moz-box;\n    /* OLD - Firefox 19- (buggy but mostly works) */\n    display: -ms-flexbox;\n    /* TWEENER - IE 10 */\n    display: -webkit-flex;\n    /* NEW - Chrome */\n    display: flex; }\n  nav-bar .nav-item {\n    height: 100%;\n    padding: 0 1rem;\n    line-height: 50px;\n    color: white;\n    text-shadow: 0px 0px 0px transparent;\n    transition: text-shadow .2s ease-in-out; }\n    nav-bar .nav-item.active {\n      background-color: #5594c2; }\n    nav-bar .nav-item:hover {\n      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.67); }\n    nav-bar .nav-item a, nav-bar .nav-item a:hover {\n      color: inherit;\n      text-decoration: none; }\n      nav-bar .nav-item a:hover, nav-bar .nav-item a:hover:hover {\n        text-decoration: none; }\n  nav-bar .nav-chevron {\n    display: inline-block;\n    width: 8px;\n    height: 8px; }\n  nav-bar .brand {\n    background-color: black;\n    color: white; }\n"; });
-define('text!resources/elements/nav-bar/nav-bar.html', ['module'], function(module) { module.exports = "<template>\n  <require from='./nav-bar.css'></require>\n  <nav class=\"nav-container\">\n    <ul class=\"nav-items\">\n      <li class=\"brand nav-item\">\n        <a href=\"#\" title=\"home\">Recipe Book</a>\n        <svg class=\"nav-chevron\" svg-inject=\"resources/images/svg/Chevron\"></svg>\n      </li>\n      <li class=\"nav-item ${nav.isActive ? 'active' : ''}\" repeat.for=\"nav of router.navigation\">\n        <a href.bind=\"nav.href\" title.bind=\"nav.title\">\n          <span>${nav.title}</span>\n        </a>\n      </li>\n    </ul>\n  </nav>\n</template>"; });
+define('text!resources/elements/nav-bar/nav-bar.html', ['module'], function(module) { module.exports = "<template>\n  <require from='./nav-bar.css'></require>\n  <nav class=\"nav-container\">\n    <ul class=\"nav-items\">\n      <li class=\"brand nav-item\">\n        <a href=\"#\" i18n=\"navbar.home;[title]navbar.homeTitle\" title=\"Home\">Recipe Book</a>\n        <svg class=\"nav-chevron\" svg-inject=\"resources/images/svg/Chevron\"></svg>\n      </li>\n      <li class=\"nav-item ${nav.isActive ? 'active' : ''}\" repeat.for=\"nav of router.navigation\">\n        <a href.bind=\"nav.href\" title.bind=\"nav.title\">\n          <span>${nav.title}</span>\n        </a>\n      </li>\n    </ul>\n  </nav>\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map

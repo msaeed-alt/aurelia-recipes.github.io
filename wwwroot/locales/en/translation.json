@@ -9,5 +9,24 @@
 		"test": "I'm an attribute tester",
 		"testTitle": "I'm a title tester",
 		"testInput": "I'm a placeholder tester"
+	},
+	"navbar": {
+		"home": "Recipe Book",
+		"homeTitle": "Home"
+	},
+	"navigation": {
+		"construction": "Under Construction",
+		"home": "Home",
+		"recipes": "Recipes",
+		"instructions": "Instructions",
+		"source-code": "Source Code"
+	},
+	"recipes": {
+		"home": {
+			"title": "Delicious Recipes"
+		}
+	},
+	"site": {
+		"name": "Recipe Book"
 	}
 }

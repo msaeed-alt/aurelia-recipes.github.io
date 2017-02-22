@@ -1,0 +1,31 @@
+{
+	"construction": {
+		"title": "__NEEDS_TRANSLATION__"
+	},
+	"home": {
+		"dynoIntro": "__NEEDS_TRANSLATION__",
+		"title": "__NEEDS_TRANSLATION__",
+		"welcome": "__NEEDS_TRANSLATION__",
+		"test": "__NEEDS_TRANSLATION__",
+		"testTitle": "__NEEDS_TRANSLATION__",
+		"testInput": "__NEEDS_TRANSLATION__"
+	},
+	"navbar": {
+		"home": "__NEEDS_TRANSLATION__"
+	},
+	"navigation": {
+		"construction": "__NEEDS_TRANSLATION__",
+		"home": "__NEEDS_TRANSLATION__",
+		"recipes": "__NEEDS_TRANSLATION__",
+		"instructions": "__NEEDS_TRANSLATION__",
+		"source-code": "__NEEDS_TRANSLATION__"
+	},
+	"recipes": {
+		"home": {
+			"title": "__NEEDS_TRANSLATION__"
+		}
+	},
+	"site": {
+		"name": "__NEEDS_TRANSLATION__"
+	}
+}

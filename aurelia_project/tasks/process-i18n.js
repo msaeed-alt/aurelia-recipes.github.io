@@ -48,9 +48,9 @@ function parseTranslations() {
                 loadPath: '../../locales/{{lng}}/{{ns}}.json',
 
                 // the destination path is relative to your `gulp.dest()` path
-                savePath: '../../locales/{{lng}}/{{ns}}.json'
+                savePath: '../../locales/{{lng}}/toTranslate_{{ns}}.json'
             }
-        }))
-        .pipe(gulp.dest('docs/locales'));
+        }));
+        //.pipe(gulp.dest('wwwroot/locales'));
 }
 

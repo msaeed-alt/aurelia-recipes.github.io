@@ -8,11 +8,10 @@ import sync from 'i18next-json-sync';
 
 import translate from 'google-translate-api';
 
-import enLocale from '../../locales/en/translation.json';
-import frLocale from '../../locales/fr/translation.json';
-
 import processi18n from './process-i18n';
 
+let enLocale = {};
+let frLocale = {};
 
 export default gulp.series(
     processi18n, //Used as an initial setting for keys. If we have any mismatch with getting the actual phrases, we need to notify
@@ -116,15 +115,29 @@ function translateLocales() {
                 //Go through each property and translate
                 traverse(localeTranslation, function(key, value, dotKey) { //TODO: `value` here is only a copy to the original. Would be much better if it were a reference
                     if (typeof value === 'string') {
-                        //No way to detect if we have already translated, so blanket translation
-                        translationRequests.push(
-                            translate(value, {from: 'en', to: 'fr'}).then(res => {
-                                //localeTranslation[key] = res.text;
-                                setTranslationKey(dotKey, res.text, localeTranslation, true);
-                            }).catch(err => {
-                                console.error(err);
-                            })
-                        );
+                        if (value !== '__NEEDS_TRANSLATION__') {
+                            translationRequests.push(
+                                translate(value, {from: 'en', to: 'fr'}).then(res => {
+                                    //localeTranslation[key] = res.text;
+                                    setTranslationKey(dotKey, res.text, localeTranslation, true);
+                                }).catch(err => {
+                                    console.error(err);
+                                })
+                            );
+                        } else {
+                            //Can we look at the english version to translate?
+                            let englishTranslation = getPropFromDot(enLocale, dotKey);
+                            if (englishTranslation) {
+                                translationRequests.push(
+                                    translate(englishTranslation, {from: 'en', to: 'fr'}).then(res => {
+                                        //localeTranslation[key] = res.text;
+                                        setTranslationKey(dotKey, res.text, localeTranslation, true);
+                                    }).catch(err => {
+                                        console.error(err);
+                                    })
+                                );
+                            }
+                        }
                     }
                 });
             }
@@ -147,8 +160,17 @@ function syncLocales() {
 
 //Utility functions
 function addTextToTranslationFiles(textKeys) {
-    deepExtend(frLocale, textKeys);
-    deepExtend(enLocale, textKeys);
+    const toTranslateEnLocale = require('../../locales/en/toTranslate_translation.json');
+    const toTranslateFrLocale = require('../../locales/fr/toTranslate_translation.json');
+
+    const existingEnLocale = require('../../locales/en/translation.json');
+    const existingFrLocale = require('../../locales/fr/translation.json');
+
+    enLocale = toTranslateEnLocale;
+    frLocale = toTranslateFrLocale;
+
+    deepExtend(toTranslateEnLocale, existingEnLocale, textKeys);
+    deepExtend(toTranslateFrLocale, existingFrLocale, textKeys);
 }
 function setTranslationKey(key, value, keys, silent = false) { // "home.title.foo", "title.foo", "foo"
     //Used to set the translation key deep in the locale object
@@ -181,7 +203,7 @@ function deepExtend(out) {
                     out[key] = deepExtend(out[key], obj[key]);
                 } else {
                     if (out[key]) {
-                        console.log(`Duplicate translation key (${key}) found while extending. Last in wins.`);
+                        //console.log(`Duplicate translation key (${key}) found while extending. Last in wins.`);
                     }
                     out[key] = obj[key];
                 }
@@ -200,4 +222,7 @@ function traverse(obj, func, passedDotKey = '') {
             traverse(obj[key], func, dotKey);
         }
     }
+}
+function getPropFromDot(obj, dot) {
+    return dot.split('.').reduce((a, b) => a[b], obj);
 }

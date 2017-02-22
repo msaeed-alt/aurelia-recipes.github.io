@@ -11,8 +11,7 @@
 		"testInput": "Je suis un testeur d'espace réservé"
 	},
 	"navbar": {
-		"home": "Livre de recettes",
-		"homeTitle": "Accueil"
+		"home": "Livre de recettes"
 	},
 	"navigation": {
 		"construction": "En construction",

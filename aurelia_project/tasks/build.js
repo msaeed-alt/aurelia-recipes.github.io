@@ -17,7 +17,7 @@ export default gulp.series(
       processSVG,
       processCSS
     ),
-    //processLocales,
+    processLocales,
     writeBundles
 );
 
